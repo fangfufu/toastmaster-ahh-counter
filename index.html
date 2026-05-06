@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Ah Counter</title>
+    <meta name="description" content="A tool for Toastmasters to count filler words during a session.">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+    <meta name="theme-color" content="#121212">
+    <!-- Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body data-theme="dark">
+    <header class="app-header">
+        <h1>Ah Counter</h1>
+        <div class="header-controls">
+            <select id="theme-select" aria-label="Select Theme">
+                <option value="dark">Dark Theme</option>
+                <option value="light">Light Theme</option>
+                <option value="tm">Toastmasters</option>
+            </select>
+        </div>
+    </header>
+
+    <main class="app-main">
+        <section class="session-controls">
+            <div class="speaker-input-group">
+                <input type="text" id="speaker-name" placeholder="Speaker Name" aria-label="Speaker Name">
+                <input type="text" id="speaker-role" list="roles-list" placeholder="Role (e.g. Speaker 1)" aria-label="Speaker Role">
+                <datalist id="roles-list">
+                    <option value="Prepared Speech">
+                    <option value="Table Topics">
+                    <option value="Evaluator">
+                    <option value="Toastmaster">
+                    <option value="General Evaluator">
+                </datalist>
+                <button id="save-speaker-btn" class="btn primary">Save Speaker</button>
+            </div>
+            <div class="action-buttons">
+                <button id="reset-current-btn" class="btn secondary">Reset Current</button>
+                <button id="generate-report-btn" class="btn action">Summary Report</button>
+            </div>
+        </section>
+
+        <section class="counter-grid">
+            <button class="counter-btn" data-word="Ah">
+                <span class="word">Ah</span>
+                <span class="count">0</span>
+            </button>
+            <button class="counter-btn" data-word="Um">
+                <span class="word">Um</span>
+                <span class="count">0</span>
+            </button>
+            <button class="counter-btn" data-word="Er">
+                <span class="word">Er</span>
+                <span class="count">0</span>
+            </button>
+            <button class="counter-btn" data-word="Well">
+                <span class="word">Well</span>
+                <span class="count">0</span>
+            </button>
+            <button class="counter-btn" data-word="So">
+                <span class="word">So</span>
+                <span class="count">0</span>
+            </button>
+            <button class="counter-btn" data-word="Like">
+                <span class="word">Like</span>
+                <span class="count">0</span>
+            </button>
+            <button class="counter-btn" data-word="But">
+                <span class="word">But</span>
+                <span class="count">0</span>
+            </button>
+            <button class="counter-btn" data-word="Repeats">
+                <span class="word">Repeats</span>
+                <span class="count">0</span>
+            </button>
+            <button class="counter-btn" data-word="Other">
+                <span class="word">Other</span>
+                <span class="count">0</span>
+            </button>
+        </section>
+
+        <section class="history-section">
+            <div class="history-header">
+                <h2>Session History</h2>
+                <div class="history-actions">
+                    <button id="sort-history-btn" class="btn small">Sort</button>
+                    <button id="export-btn" class="btn small">Export</button>
+                    <label for="import-file" class="btn small">Import</label>
+                    <input type="file" id="import-file" accept=".json" style="display: none;">
+                    <button id="clear-history-btn" class="btn small danger">Clear</button>
+                </div>
+            </div>
+            <ul id="history-list" class="history-list">
+                <!-- History items will be populated here -->
+            </ul>
+        </section>
+    </main>
+
+    <!-- Modal for Summary Report -->
+    <div id="report-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Summary Report</h2>
+                <button id="close-modal-btn" class="close-btn">&times;</button>
+            </div>
+            <div id="report-body" class="modal-body">
+                <!-- Report will be generated here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('SW registered!', reg))
+                    .catch(err => console.error('SW failed', err));
+            });
+        }
+    </script>
+</body>
+</html>
