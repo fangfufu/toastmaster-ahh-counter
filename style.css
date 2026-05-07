@@ -219,14 +219,14 @@ body {
 .counter-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
+    gap: 0.75rem;
 }
 
 .counter-btn {
     background-color: var(--bg-surface);
     border: 2px solid transparent;
     border-radius: var(--container-radius);
-    padding: 1.5rem 0.5rem;
+    padding: 1rem 0.25rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -255,15 +255,15 @@ body {
 }
 
 .counter-btn .word {
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     font-weight: 600;
     color: var(--text-secondary);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
     pointer-events: none;
 }
 
 .counter-btn .count {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 800;
     color: var(--text-primary);
     pointer-events: none;
@@ -456,7 +456,19 @@ body {
 /* Responsive */
 @media (max-width: 480px) {
     .counter-grid {
-        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+    }
+    
+    .counter-btn {
+        padding: 0.75rem 0.1rem;
+    }
+
+    .counter-btn .word {
+        font-size: 0.8rem;
+    }
+
+    .counter-btn .count {
+        font-size: 1.5rem;
     }
     
     .session-controls {
