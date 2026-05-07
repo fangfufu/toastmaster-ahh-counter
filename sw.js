@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ah-counter-v5';
+const CACHE_NAME = 'ah-counter-v6';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
